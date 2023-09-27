@@ -11,7 +11,8 @@ import models
 # access to the values within the .ini file in use.
 config = context.config
 # url = database.engine.url
-config.set_main_option("sqlalchemy.url", "postgresql://postgres:root@localhost/blogapp_fastapi")
+config.set_main_option("sqlalchemy.url",
+                       "postgresql://admin:admin@localhost/blogapp_fastapi")
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

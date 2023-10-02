@@ -51,7 +51,7 @@ def login_user(data: UserLogin, db: Session = Depends(get_db)):
         if bcrypt.checkpw(
                 data.password.encode("utf-8"),
                 user[0].password.encode("utf-8")
-                ):
+        ):
             return signJWT(data.email)
         else:
             return {"error": "Wrong credentials."}

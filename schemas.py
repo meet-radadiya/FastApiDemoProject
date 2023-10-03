@@ -7,6 +7,11 @@ class User(BaseModel):
     password: str
 
 
+class UserView(BaseModel):
+    name: str
+    email: EmailStr
+
+
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
@@ -19,6 +24,7 @@ class Post(BaseModel):
 
 
 class PostView(BaseModel):
+    id: int
     title: str
     content: str
-    user: User
+    user: UserView

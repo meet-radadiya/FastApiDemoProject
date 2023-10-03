@@ -12,7 +12,7 @@ import models
 config = context.config
 # url = database.engine.url
 config.set_main_option("sqlalchemy.url",
-                       "postgresql://admin:admin@localhost/blogapp_fastapi")
+                       "postgresql://postgres:root@localhost/blogapp_fastapi")
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

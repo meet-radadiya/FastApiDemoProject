@@ -92,3 +92,7 @@ def update_post(id: int, post: Post, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(existing_post)
     return existing_post
+
+
+def myfunc():
+    return "Made changes for pull request."

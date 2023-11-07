@@ -92,13 +92,3 @@ def update_post(id: int, post: Post, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(existing_post)
     return existing_post
-
-
-@app.delete("/posts/{id}", dependencies=[Depends(JWTBearer())], tags=['post'])
-def delete_post(id: int, db: Session = Depends(get_db)):
-    post = db.query(models.Post).filter_by(id=id).first()
-    if not post:
-        raise HTTPException(status_code=404, detail="Post not found")
-    db.delete(post)
-    db.commit()
-    return {"message": "Post deleted"}

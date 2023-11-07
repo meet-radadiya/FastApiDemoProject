@@ -54,7 +54,7 @@ def login_user(data: UserLogin, db: Session = Depends(get_db)):
         ):
             return signJWT(data.email)
         else:
-            return {"error": "Wrong credentials. feature branch"}
+            return {"error": "Wrong credentials. feature branch."}
     else:
         return {"error": "Please sign up."}
 

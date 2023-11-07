@@ -1,9 +1,8 @@
-from typing import List
-
 import bcrypt
 from fastapi import FastAPI, HTTPException
 from fastapi.params import Depends
 from sqlalchemy.orm import Session
+from typing import List
 
 import models
 from auth_bearer import JWTBearer
@@ -54,7 +53,8 @@ def login_user(data: UserLogin, db: Session = Depends(get_db)):
         ):
             return signJWT(data.email)
         else:
-            return {"error": "Wrong credentials. feature branch"}
+            return {
+                "error": "Wrong credentials. feature branch, changes for pull request"}
     else:
         return {"error": "Please sign up."}
 

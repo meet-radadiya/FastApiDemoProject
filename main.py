@@ -54,7 +54,7 @@ def login_user(data: UserLogin, db: Session = Depends(get_db)):
         ):
             return signJWT(data.email)
         else:
-            return {"error": "Wrong credentials. main branch"}
+            return {"error": "Wrong credentials. feature branch"}
     else:
         return {"error": "Please sign up."}
 
@@ -63,6 +63,15 @@ def login_user(data: UserLogin, db: Session = Depends(get_db)):
 def get_posts(db: Session = Depends(get_db)):
     posts = db.query(models.Post).join(models.User).all()
     return posts
+
+
+@app.post("/posts", dependencies=[Depends(JWTBearer())], tags=['post'])
+def create_post(post: Post, db: Session = Depends(get_db)):
+    new_post = models.Post(**post.model_dump())
+    db.add(new_post)
+    db.commit()
+    db.refresh(new_post)
+    return post
 
 
 @app.get("/posts/{id}", response_model=PostView, tags=['post'])

@@ -65,15 +65,6 @@ def get_posts(db: Session = Depends(get_db)):
     return posts
 
 
-@app.post("/posts", dependencies=[Depends(JWTBearer())], tags=['post'])
-def create_post(post: Post, db: Session = Depends(get_db)):
-    new_post = models.Post(**post.model_dump())
-    db.add(new_post)
-    db.commit()
-    db.refresh(new_post)
-    return post
-
-
 @app.get("/posts/{id}", response_model=PostView, tags=['post'])
 def get_post(id: int, db: Session = Depends(get_db)):
     post = db.query(models.Post).join(models.User).filter_by(id=id).first()
